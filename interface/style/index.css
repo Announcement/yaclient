@@ -1,0 +1,46 @@
+body {
+    font-family: 'Noto Serif', serif;
+}
+
+form {
+    display: inline-block;
+}
+
+fieldset {
+    height: min-content;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .28);
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+fieldset input {
+    outline: none;
+    border-width: 0;
+    border-style: solid;
+    border-color: transparent;
+    font-size: 16px;
+    color: rgba(0, 0, 0, .87);
+}
+
+fieldset label {
+    font-size: 16px;
+    color: rgba(0, 0, 0, .54);
+}
+
+fieldset label,
+fieldset input {
+    line-height: 23px;
+    color: rgba(0, 0, 0, .87);
+}

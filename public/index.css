@@ -1,0 +1,57 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: 1fr min-content;
+  /* align-items: center; */
+}
+nav {
+  display: block;
+}
+aside {
+  min-width: 240px;
+  width: min-content;
+  border: 1px solid black;
+  height: calc(98%);
+}
+main {
+  display: grid;
+}
+main section article header {
+  line-height: 24px;
+  display: block;
+}
+main section article header span {
+  display: block;
+  text-align: right;
+}
+main section article p {
+  margin: 0;
+  line-height: 24px;
+  padding: 0;
+}
+main section article footer {
+  line-height: 24px;
+  display: block;
+}
+form {
+  width: available;
+}
+form input {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: calc(84%);
+  outline: none;
+  border-width: 0;
+  border-style: none;
+  border-color: transparent;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 32px;
+  line-height: 32px;
+}

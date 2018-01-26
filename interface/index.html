@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/noto-serif" type="text/css" />
+    <title>connect</title>
+    <script src="https://cdn.jsdelivr.net/bluebird/latest/bluebird.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <form name="connect">
+            <h1>connect</h1>
+            <!-- <input name="nickname" placeholder="irc nickname"> -->
+            <fieldset>
+                <!-- <label for="nickname">nickname</label> -->
+                <input name="nickname" placeholder="nickname">
+            </fieldset>
+            <fieldset>
+                <label for="server">irc://</label>
+                <input list="servers" name="server">
+            </fieldset>
+            <datalist id="servers">
+                <option value="irc.efnet.org"></option>
+                <option value="irc.undernet.org"></option>
+                <option value="irc.freenode.net"></option>
+                <option value="irc.quakenet.org"></option>
+            </datalist>
+        </form>
+    </main>
+    <!-- <textarea></textarea> -->
+    <!-- <p>paragraph</p> -->
+    <script src="script/index.js"></script>
+</body>
+
+</html>
