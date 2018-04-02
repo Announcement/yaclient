@@ -1,21 +1,15 @@
 {
     "name": "yaclient",
-
     "version": "1.0.0",
-
     "description": "IRC Client, yet another.",
-
     "main": "header/main.js",
-
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Announcement/yaclient.git"
     },
-
     "keywords": [
         "irc",
         "client",
@@ -28,14 +22,13 @@
         "typescript",
         "babel"
     ],
-
     "author": "Jacob Francis Powers <xxv9xx@gmail.com>",
-
     "license": "MIT",
-
     "bugs": {
         "url": "https://github.com/Announcement/yaclient/issues"
     },
-
-    "homepage": "https://github.com/Announcement/yaclient#readme"
+    "homepage": "https://github.com/Announcement/yaclient#readme",
+    "dependencies": {
+        "irc": "^0.5.2"
+    }
 }

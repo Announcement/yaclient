@@ -7,7 +7,7 @@ var url = require("url");
 // be closed automatically when the JavaScript object is garbage collected.
 var win;
 function createWindow() {
-    electron_1.BrowserWindow.addDevToolsExtension("C:\\Users\\Jake\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\2.5.2_0");
+    // electron_1.BrowserWindow.addDevToolsExtension("C:\\Users\\Jake\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Extensions\\fmkadmapgofadopljbjfkapdkoienihi\\2.5.2_0");
     // Create the browser window.
     win = new electron_1.BrowserWindow({ width: 800, height: 600 });
     win.setMenu(null);
@@ -47,4 +47,4 @@ electron_1.app.on('activate', function () {
     }
 });
 // In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here. 
+// code. You can also put them in separate files and require them here.
