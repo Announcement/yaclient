@@ -9,7 +9,111 @@ body {
 	margin-left: 0;
 	margin-right: 0;
 	margin-bottom: 0; }
+
 body {
+	display: grid;
+
+	grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+
+  align-content: stretch; }
+
+nav,
+nav a,
+nav section,
+nav section a {
+	display: inline-block;
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0; }
+
+nav {
+	width: max-content;
+	margin-left: auto;
+	/* display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	align-content: flex-end;
+	justify-content: flex-end; */
+}
+
+nav a,
+nav section a {
+	text-decoration: none;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-left: 4px;
+	margin-right: 4px;
+	font-size: 34px; }
+
+form {
+	width: available;
+	grid-column: 1 / span 1;
+	grid-row: 3 / span 1; }
+
+form input[type="submit"],
+form button {
+	display: none; }
+
+form input[type="text"] {
+	  margin-top: 0;
+	  margin-bottom: 0;
+	  width: available;
+	  outline: none;
+	  border-width: 0;
+	  border-style: none;
+	  border-color: transparent;
+	  padding-left: 8px;
+	  padding-right: 8px;
+	  height: 32px;
+	  line-height: 32px; }
+
+article.message {
+	padding-top: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;  }
+
+.inactive-conversation {
+	display: none; }
+
+.active-conversation {
+	display: block; }
+
+.inactive-navigation {
+	border-bottom-width: 0;
+	border-bottom-style: solid;
+	border-bottom-color: transparent; }
+
+.active-navigation {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgba(0, 0, 0, .14); }
+
+.message > header {
+	display: none; }
+
+.message > address {
+	padding-right: 2px;
+	margin-right: 2px;
+	font-style: normal;
+	display: inline-block; }
+
+.message > p {
+	margin-left: 2px;
+	padding-left: 2px;
+	display: inline-block; }
+
+/* body {
 	background-color: #fafafa;
 	display: flex;
 	flex-direction: row;
@@ -26,4 +130,4 @@ body > * {
 	margin-right: 8px;
 	margin-bottom: 8px;
 	background-color: #ffffff;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.33); }
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.33); } */

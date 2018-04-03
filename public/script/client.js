@@ -31,7 +31,12 @@ function getConnection (server) {
 	const client = new irc.Client(server, 'yaclient')
 	const channels = servers.get(server)
 	const hashifiedServer = hashify(server)
+
 	const messageElements = new Map
+	const navigationElements = new Map
+	const channelParticipants = new Map
+
+	let activeConversation
 
 	console.log(channels)
 
@@ -40,8 +45,13 @@ function getConnection (server) {
 
 	client.on('registered', onRegistered)
 	client.on('message', onMessage)
+	client.on('names', onNames)
 	// client.on('selfMessage', onSelfMessage)
 	client.on('join', onJoin)
+
+	function onNames (channel, nicks) {
+		channelParticipants.set(channel, nicks)
+	}
 
 	function onRegistered (message/*:string*/)/*: void */ {
 		const serverAnchorElement = document.createElement('a')
@@ -60,14 +70,24 @@ function getConnection (server) {
 
 		mainElement.appendChild(serverMessagesElement)
 
-		for (const [channel] of channels)
+		for (const [channel] of channels) {
 			client.join(channel)
+			activeConversation = channel
+		}
+	}
+
+	function setActiveConverstation (activeConversation) {
+		for (const [k, v] of messageElements.get(activeConversation)) {
+			console.log({ k, v })
+		}
 	}
 
 	function onJoin (channel, nick, message) {
 		if (!messageElements.has(channel))
 			setMessageDestination(channel)
 		setNavigationDestination(channel)
+
+		flagConversation(channel)
 	}
 
 	function onMessage (nick/*:string*/, to/*:string*/, text/*:string*/, message)/*:void*/ {
@@ -75,6 +95,8 @@ function getConnection (server) {
 			setMessageDestination(to)
 			setNavigationDestination(to)
 		}
+
+		flagConversation(to)
 
 		if (!servers.get(server).has(to))
 			servers.get(server).set(to, new Set)
@@ -106,6 +128,8 @@ function getConnection (server) {
 		const senderTextNode = document.createTextNode(who)
 		const destinationTextNode = document.createTextNode(where)
 
+		messageElement.classList.add('message')
+
 		timeElement.setAttribute('datetime', when.toISOString())
 
 		headerElement.appendChild(toAddressElement)
@@ -127,13 +151,42 @@ function getConnection (server) {
 		return messageElement
 	}
 
+	function flagConversation (conversation) {
+		const messageElement = messageElements.get(conversation)
+		const navigationElement = navigationElements.get(conversation)
+
+		if (conversation !== activeConversation) {
+			messageElement.classList.add('inactive-conversation')
+			if (messageElement.classList.contains('active-conversation'))
+				messageElement.classList.remove('active-conversation')
+		}
+
+		if (conversation === activeConversation) {
+			messageElement.classList.add('active-conversation')
+			if (messageElement.classList.contains('inactive-conversation'))
+				messageElement.classList.remove('inactive-conversation')
+		}
+
+		if (conversation !== activeConversation) {
+			navigationElement.classList.add('inactive-navigation')
+			if (navigationElement.classList.contains('active-navigation'))
+				navigationElement.classList.remove('active-navigation')
+		}
+
+		if (conversation === activeConversation) {
+			navigationElement.classList.add('active-navigation')
+			if (navigationElement.classList.contains('inactive-navigation'))
+				navigationElement.classList.remove('inactive-navigation')
+		}
+	}
+
 	function setMessageDestination (messageDestination) {
 		const hashifiedMessageDestination = hashify(messageDestination)
 
 		const destinationElement = document.createElement('section')
 
 		destinationElement.classList.add('messages')
-		destinationElement.setAttribute('id', `#messages-${hashifiedServer}-${hashifiedMessageDestination}`)
+		destinationElement.setAttribute('id', `messages-${hashifiedServer}-${hashifiedMessageDestination}`)
 		serverMessagesElement.appendChild(destinationElement)
 		messageElements.set(messageDestination, destinationElement)
 
@@ -147,6 +200,18 @@ function getConnection (server) {
 		const destinationAnchorTextNode = document.createTextNode(navigationDestination)
 
 		destinationAnchorElement.setAttribute('href', `#${hashifiedServer}-${navigationDestination}`)
+
+		destinationAnchorElement.addEventListener('click', function (mouseEvent) {
+			const previousConversation = activeConversation + ''
+			const currentConversation = navigationDestination + ''
+
+			activeConversation = currentConversation
+
+			flagConversation(previousConversation)
+			flagConversation(currentConversation)
+		})
+
+		navigationElements.set(navigationDestination, destinationAnchorElement)
 
 		destinationAnchorElement.appendChild(destinationAnchorTextNode)
 		serverNavigationElement.appendChild(destinationAnchorElement)
